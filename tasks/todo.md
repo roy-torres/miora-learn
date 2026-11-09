@@ -55,3 +55,4 @@ Account: `roy-torres` (gh CLI logged in, `repo` scope). Free Pages needs a **pub
 - Cause: uniform -1.19px tracking on the 79px `h1` stacked on Newsreader's tight display cut, so straight-stem pairs ("rn" in "Learn", "kn", "ow") nearly touched.
 - Fix: one rule in `index.html`. Tracking is now -.005em (about -0.4px at 79px), kerning explicitly on. Applies to `h1`, `h2`, `h3`.
 - Checked: "Learn" letters separate, `h2` even, no horizontal overflow at 390px. If still too tight, try `0`.
+- Follow-up: "rn" in "Learn" still looked close, so tracking set to `0` (kerning stays on). Previewed locally, then approved.
