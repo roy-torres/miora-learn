@@ -42,3 +42,16 @@ Account: `roy-torres` (gh CLI logged in, `repo` scope). Free Pages needs a **pub
 - GitHub Pages enabled from `main` `/`. Build finished and the site returns HTTP 200.
 - Live: https://roy-torres.github.io/miora-learn/
 - To update: edit, `git commit`, `git push`; Pages rebuilds in about a minute.
+
+---
+
+# Todo: Fix heading tracking and kerning
+
+- [x] Change `h1,h2,h3` letter-spacing `-.015em` -> `-.005em`, add `font-kerning:normal`.
+- [x] Re-screenshot `h1` (1280px) and an `h2`; check mobile (390px) for overflow.
+- [x] Commit and push so the live page updates.
+
+## Review
+- Cause: uniform -1.19px tracking on the 79px `h1` stacked on Newsreader's tight display cut, so straight-stem pairs ("rn" in "Learn", "kn", "ow") nearly touched.
+- Fix: one rule in `index.html`. Tracking is now -.005em (about -0.4px at 79px), kerning explicitly on. Applies to `h1`, `h2`, `h3`.
+- Checked: "Learn" letters separate, `h2` even, no horizontal overflow at 390px. If still too tight, try `0`.
