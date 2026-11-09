@@ -28,13 +28,17 @@ Scope: small CSS-only edits in `index.html`. No layout or content rewrites.
 
 Account: `roy-torres` (gh CLI logged in, `repo` scope). Free Pages needs a **public** repo, so the page and repo contents become public.
 
-- [ ] 1. Add `.gitignore` (`.env`, `.env.*`, `!.env.example`, `.claude/settings.local.json`, `.claude/logs/`, `.playwright-mcp/`, plus the three `preview-*.png` files, which the site doesn't use).
-- [ ] 2. `git init`, commit `index.html`, `claude.md`, `tasks/`, `.gitignore` (branch `main`).
-- [ ] 3. Scan staged files with `git diff --cached` for secret patterns. Stop if anything shows. (Pre-check on current files: clean.)
-- [ ] 4. `gh repo create roy-torres/miora-learn --public --source=. --push`.
-- [ ] 5. Enable Pages from `main` branch, `/` root, via `gh api`.
-- [ ] 6. Wait for the build, then check the URL loads (expected `https://roy-torres.github.io/miora-learn/`).
-- [ ] 7. Add a Review section here.
+- [x] 1. Add `.gitignore` (`.env`, `.env.*`, `!.env.example`, `.claude/settings.local.json`, `.claude/logs/`, `.playwright-mcp/`, plus the three `preview-*.png` files, which the site doesn't use).
+- [x] 2. `git init`, commit `index.html`, `claude.md`, `tasks/`, `.gitignore` (branch `main`).
+- [x] 3. Scan staged files with `git diff --cached` for secret patterns. Stop if anything shows. (Pre-check on current files: clean.)
+- [x] 4. `gh repo create roy-torres/miora-learn --public --source=. --push`.
+- [x] 5. Enable Pages from `main` branch, `/` root, via `gh api`.
+- [x] 6. Wait for the build, then check the URL loads (expected `https://roy-torres.github.io/miora-learn/`).
+- [x] 7. Add a Review section here.
 
 ## Review
-(to be filled in at the end)
+- `.gitignore` added (secrets, `.playwright-mcp/`, `preview-*.png`). Staged-diff secret scan was clean.
+- Committed `index.html`, `claude.md`, `tasks/`, `.gitignore` to `main` and pushed to a new public repo: https://github.com/roy-torres/miora-learn
+- GitHub Pages enabled from `main` `/`. Build finished and the site returns HTTP 200.
+- Live: https://roy-torres.github.io/miora-learn/
+- To update: edit, `git commit`, `git push`; Pages rebuilds in about a minute.
