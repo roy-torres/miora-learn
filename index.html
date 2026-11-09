@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn your Metabolic Code | MIORA Illinois (design concept)</title>
+<meta name="description" content="A plain-language guide to how AI helps clinicians read 70+ biomarkers. Design concept for MIORA Illinois.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#10222F;        /* Lake ink */
+  --ink-2:#3F5160;      /* secondary text */
+  --ink-3:#5A6B77;      /* tertiary, AA 4.5:1+ on paper and fog */
+  --paper:#F8FAF9;
+  --fog:#E7EDEE;
+  --line:#D2DCDF;
+  --glass:#7FBFAE;      /* sea glass */
+  --glass-d:#2F7F6E;
+  --amber:#E8A53C;      /* the one signal color */
+  --serif:'Newsreader',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s6:48px;--s8:64px;--s12:96px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--glass-d);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1184px;margin:0 auto;padding:0 var(--s4)}
+.serif{font-family:var(--serif)}
+h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.015em;line-height:1.08}
+h1{font-size:clamp(44px,6.2vw,84px)}
+h2{font-size:clamp(34px,4vw,52px)}
+h3{font-size:24px;line-height:1.2;font-weight:400}
+p{max-width:60ch;color:var(--ink-2)}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--ink);color:#fff;padding:8px 16px;z-index:9}
+
+/* header */
+header{padding:var(--s3) 0}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s3)}
+.logo{font:600 20px var(--sans);letter-spacing:.14em;text-decoration:none}
+nav{display:flex;gap:var(--s4);font-size:15px}
+nav a{text-decoration:none;color:var(--ink-2)}nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 var(--s4);border-radius:999px;background:var(--ink);color:#fff;text-decoration:none;font-weight:500;font-size:16px;transition:background .2s}
+.btn:hover{background:var(--glass-d)}
+.btn.sm{min-height:48px;padding:0 var(--s3);font-size:15px}
+.btn.ghost{background:none;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn.ghost:hover{background:var(--fog)}
+
+/* hero */
+.hero{padding:var(--s6) 0 var(--s12)}
+.hero .wrap{display:grid;grid-template-columns:7fr 5fr;gap:var(--s8);align-items:center}
+.hero p.lede{font:300 22px/1.5 var(--serif);color:var(--ink-2);margin:var(--s3) 0 var(--s4);max-width:34ch}
+.hero .actions{display:flex;gap:var(--s2);flex-wrap:wrap}
+.instrument{position:relative}
+.ring{width:100%;height:auto;display:block}
+.dot{fill:var(--ink-3);opacity:.35;transition:fill .3s,opacity .3s}
+.dot.on{fill:var(--glass-d);opacity:1}
+.dot.flag{fill:var(--amber);opacity:1}
+.ring-center{font:300 54px var(--serif);fill:var(--ink)}
+.ring-sub{font:400 13px var(--sans);fill:var(--ink-3)}
+@media (prefers-reduced-motion:no-preference){
+  .dot{animation:pop .5s both;animation-delay:calc(var(--i)*14ms)}
+  @keyframes pop{from{opacity:0;transform:scale(.2)}}
+  .dot{transform-box:fill-box;transform-origin:center}
+}
+.triads{list-style:none;padding:0;margin-top:var(--s3);display:grid;gap:2px}
+.triads button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:var(--s2);padding:12px var(--s2);border-radius:12px;cursor:pointer;font-size:16px;color:var(--ink-2);transition:background .2s}
+.triads button:hover{background:var(--fog)}
+.triads button[aria-pressed=true]{background:var(--fog);color:var(--ink);font-weight:500}
+.triads button:focus-visible{outline:2px solid var(--glass-d);outline-offset:-2px}
+.triads small{color:var(--ink-3);font-size:14px;font-weight:400}
+#triad-note{min-height:84px;padding:var(--s2);font-size:15px;color:var(--ink-2);max-width:none}
+
+/* sections */
+section{padding:var(--s12) 0}
+.band{background:var(--fog)}
+.split{display:grid;grid-template-columns:5fr 7fr;gap:var(--s8);align-items:start}
+.split.flip{grid-template-columns:7fr 5fr}
+.stack>*+*{margin-top:var(--s3)}
+.steps{list-style:none;padding:0;counter-reset:s;margin-top:var(--s6)}
+.steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:var(--s2);padding:var(--s3) 0;border-top:1px solid var(--line)}
+.steps li::before{content:counter(s);font:300 32px/1 var(--serif);color:var(--glass-d)}
+.steps h3{margin-bottom:var(--s1)}
+.mock{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(16,34,47,.14))}
+
+/* lessons */
+.lessons{margin-top:var(--s6);border-top:1px solid var(--ink)}
+.lesson{display:grid;grid-template-columns:5fr 6fr 1fr;gap:var(--s4);padding:var(--s4) 0;border-bottom:1px solid var(--line);align-items:baseline;text-decoration:none;transition:padding .25s}
+.lesson:hover{padding-left:var(--s2)}
+.lesson:hover h3{color:var(--glass-d)}
+.lesson span.t{color:var(--ink-3);font-size:15px;text-align:right}
+.lesson p{font-size:16px}
+
+/* glossary */
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:var(--s3) 0;font:400 24px/1.2 var(--serif);display:flex;justify-content:space-between;gap:var(--s3)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:300 28px/1 var(--sans);color:var(--ink-3);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding-bottom:var(--s3)}
+
+/* honest AI */
+.limits{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8);margin-top:var(--s6)}
+.limits h3{margin-bottom:var(--s2)}
+.limits ul{list-style:none;padding:0}
+.limits li{padding:12px 0 12px 28px;border-top:1px solid var(--line);position:relative;color:var(--ink-2)}
+.limits li::before{content:"";position:absolute;left:0;top:22px;width:10px;height:10px;border-radius:50%;background:var(--glass)}
+.limits .no li::before{background:none;box-shadow:inset 0 0 0 2px var(--amber)}
+
+/* evidence */
+.legend{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s4);margin:var(--s4) 0 var(--s2);font-size:15px;color:var(--ink-2)}
+.legend span,.ev .st{display:inline-flex;align-items:center;gap:var(--s1)}
+.mk{width:14px;height:14px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 2px var(--glass-d)}
+.mk.est{background:var(--glass-d)}
+.mk.mix{background:linear-gradient(90deg,var(--glass-d) 50%,transparent 50%)}
+.ev{border-top:1px solid var(--ink)}
+.ev .row{display:grid;grid-template-columns:4fr 3fr 6fr;gap:var(--s4);padding:var(--s3) 0;border-bottom:1px solid var(--line);align-items:baseline}
+.ev h3{font-size:22px}
+.ev .st{font-size:15px;color:var(--ink)}
+.ev p{font-size:16px}
+.src{list-style:none;padding:0;margin-top:var(--s1);font-size:14px}
+.src li{padding:2px 0;color:var(--ink-3)}
+.src a{color:#1F5E50;text-underline-offset:3px}
+.src a:hover{color:var(--ink)}
+.srcnote{font-size:14px;color:var(--ink-3);margin-top:var(--s2);max-width:70ch}
+.ask{margin-top:var(--s8)}
+.ask ul{list-style:none;padding:0;margin-top:var(--s3);columns:2;column-gap:var(--s8)}
+.ask li{break-inside:avoid;padding:12px 0;border-top:1px solid var(--line);color:var(--ink-2)}
+@media (max-width:860px){.ev .row{grid-template-columns:1fr;gap:var(--s1)}.ask ul{columns:1}}
+
+/* visit */
+.visit dl{display:grid;grid-template-columns:120px 1fr;gap:var(--s1) var(--s3);margin:var(--s4) 0}
+.visit dt{color:var(--ink-3);font-size:15px}
+.visit dd{color:var(--ink)}
+footer{padding:var(--s6) 0;border-top:1px solid var(--line);font-size:14px;color:var(--ink-3)}
+footer p{max-width:80ch;color:var(--ink-3)}
+
+@media (max-width:860px){
+  .wrap{padding:0 var(--s3)}
+  nav{display:none}
+  .hero .wrap,.split,.split.flip,.limits{grid-template-columns:1fr;gap:var(--s6)}
+  .lesson{grid-template-columns:1fr;gap:var(--s1)}
+  .lesson span.t{text-align:left}
+  section{padding:var(--s8) 0}
+  .instrument{max-width:420px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">MIORA</a>
+    <nav aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#learn">Learn</a>
+      <a href="#ai">AI and your care</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#visit">Illinois</a>
+    </nav>
+    <a class="btn sm" href="#visit">Book a consultation</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap">
+    <div>
+      <h1 id="h1">Your blood already knows. Learn to read it.</h1>
+      <p class="lede">A plain-language guide to your Metabolic Code: 70+ biomarkers, five triads, and the role AI plays in helping your care team see the pattern.</p>
+      <div class="actions">
+        <a class="btn" href="#learn">Start learning</a>
+        <a class="btn ghost" href="#visit">Visit Evanston</a>
+      </div>
+    </div>
+    <div class="instrument">
+      <svg class="ring" id="ring" viewBox="0 0 400 400" role="img" aria-label="Seventy biomarkers arranged in a ring, grouped into five triads. One marker is highlighted in amber."></svg>
+      <ul class="triads" id="triads"></ul>
+      <p id="triad-note" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="how" aria-labelledby="how-h">
+  <div class="wrap split">
+    <div class="stack">
+      <h2 id="how-h">From a blood draw to a plan that adapts</h2>
+      <p>MIORA turns one set of labs into a map of how your body is working. Your provider reads it with you, in the context of how you actually feel.</p>
+      <ol class="steps">
+        <li><div><h3>Get clear on you</h3><p>Comprehensive bloodwork and a symptom report become your Metabolic Code.</p></div></li>
+        <li><div><h3>Build your plan</h3><p>Your provider reviews results against your history and goals.</p></div></li>
+        <li><div><h3>Ongoing support</h3><p>Labs and plan updates keep pace as your body changes.</p></div></li>
+      </ol>
+    </div>
+    <!-- Mockup: lab report -->
+    <svg class="mock" viewBox="0 0 560 640" role="img" aria-label="Mockup of a lab report showing five biomarkers on range bars, one marker in amber outside the optimal zone.">
+      <rect x="40" y="20" width="480" height="600" rx="20" fill="#fff"/>
+      <text x="76" y="76" font-family="Newsreader,serif" font-size="28" font-weight="300" fill="#10222F">Your Metabolic Code</text>
+      <text x="76" y="100" font-family="Instrument Sans,sans-serif" font-size="13" fill="#5A6B77">Drawn Tuesday, reviewed with your provider</text>
+      <g font-family="Instrument Sans,sans-serif" font-size="14" fill="#3F5160">
+        <g transform="translate(76 150)"><text>Fasting glucose</text><rect y="16" width="408" height="8" rx="4" fill="#E7EDEE"/><rect x="120" y="16" width="170" height="8" rx="4" fill="#BFE0D7"/><circle cx="204" cy="20" r="9" fill="#2F7F6E"/></g>
+        <g transform="translate(76 226)"><text>Vitamin D</text><rect y="16" width="408" height="8" rx="4" fill="#E7EDEE"/><rect x="150" y="16" width="170" height="8" rx="4" fill="#BFE0D7"/><circle cx="86" cy="20" r="11" fill="#E8A53C"/></g>
+        <g transform="translate(76 302)"><text>hs-CRP</text><rect y="16" width="408" height="8" rx="4" fill="#E7EDEE"/><rect x="40" y="16" width="170" height="8" rx="4" fill="#BFE0D7"/><circle cx="120" cy="20" r="9" fill="#2F7F6E"/></g>
+        <g transform="translate(76 378)"><text>Ferritin</text><rect y="16" width="408" height="8" rx="4" fill="#E7EDEE"/><rect x="100" y="16" width="190" height="8" rx="4" fill="#BFE0D7"/><circle cx="238" cy="20" r="9" fill="#2F7F6E"/></g>
+        <g transform="translate(76 454)"><text>Free testosterone</text><rect y="16" width="408" height="8" rx="4" fill="#E7EDEE"/><rect x="130" y="16" width="170" height="8" rx="4" fill="#BFE0D7"/><circle cx="188" cy="20" r="9" fill="#2F7F6E"/></g>
+      </g>
+      <rect x="76" y="528" width="408" height="64" rx="12" fill="#F8FAF9"/>
+      <text x="96" y="556" font-family="Instrument Sans,sans-serif" font-size="14" font-weight="600" fill="#10222F">Worth a conversation</text>
+      <text x="96" y="577" font-family="Instrument Sans,sans-serif" font-size="13" fill="#3F5160">Vitamin D sits below your optimal zone.</text>
+    </svg>
+  </div>
+</section>
+
+<section id="learn" aria-labelledby="learn-h">
+  <div class="wrap">
+    <h2 id="learn-h">Short lessons, no jargon</h2>
+    <div class="lessons">
+      <a class="lesson" href="#glossary"><h3>What a biomarker is</h3><p>A measurable signal in your blood, like glucose or vitamin D, that reflects how a system is working.</p><span class="t">3 min</span></a>
+      <a class="lesson" href="#glossary"><h3>Normal versus optimal</h3><p>A lab’s normal range flags disease. An optimal range asks how well you could be doing.</p><span class="t">4 min</span></a>
+      <a class="lesson" href="#glossary"><h3>Why patterns beat single numbers</h3><p>Markers move together. Reading them as triads shows causes, not only symptoms.</p><span class="t">5 min</span></a>
+      <a class="lesson" href="#ai"><h3>Where AI helps, and where it stops</h3><p>What the model does with 70+ markers, and what stays with your provider.</p><span class="t">4 min</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="glossary" aria-labelledby="g-h">
+  <div class="wrap split">
+    <div class="stack">
+      <h2 id="g-h">Terms you will hear in your visit</h2>
+      <p>Open any term for a one-paragraph answer.</p>
+    </div>
+    <div>
+      <details><summary>Metabolic Code</summary><p>MIORA’s analysis of 70+ biomarkers across five triads, read alongside your symptom report.</p></details>
+      <details><summary>Triad</summary><p>A group of related markers that are read together, because one number alone rarely explains how you feel.</p></details>
+      <details><summary>Optimal range</summary><p>A narrower target than the standard lab range, set around how well you function rather than whether you have a disease.</p></details>
+      <details><summary>Care plan</summary><p>The steps you and your provider agree on, based on your results, history, and goals. You can ask what each step is for and how it will be measured.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="ai" aria-labelledby="ai-h">
+  <div class="wrap">
+    <h2 id="ai-h">AI reads the pattern. People make the decision.</h2>
+    <div class="limits">
+      <div class="yes"><h3>What AI does</h3>
+        <ul><li>Compares 70+ markers at once</li><li>Spots combinations a single result hides</li><li>Tracks how your numbers change between visits</li></ul></div>
+      <div class="no"><h3>What your provider does</h3>
+        <ul><li>Weighs results against how you feel</li><li>Decides on every treatment</li><li>Explains the why, and answers your questions</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="evidence" aria-labelledby="e-h">
+  <div class="wrap">
+    <h2 id="e-h">What the evidence supports</h2>
+    <p style="margin-top:24px">Not every test or treatment has the same research behind it. Here is how we label what you will read about.</p>
+    <div class="legend" role="list">
+      <span role="listitem"><i class="mk est"></i>Well established</span>
+      <span role="listitem"><i class="mk mix"></i>Mixed or limited</span>
+      <span role="listitem"><i class="mk"></i>Emerging or unproven</span>
+    </div>
+    <div class="ev">
+      <div class="row"><h3>Glucose and cholesterol tests</h3><span class="st"><i class="mk est"></i>Well established</span><div><p>Fasting glucose is a standard test for diabetes, and LDL cholesterol is a standard guide to heart disease risk and treatment.</p><ul class="src" aria-label="Sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/36507649/">ADA Standards of Care: Classification and Diagnosis of Diabetes, 2023</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/30586774/">2018 AHA/ACC Guideline on the Management of Blood Cholesterol</a></li></ul></div></div>
+      <div class="row"><h3>Treating vitamin D deficiency</h3><span class="st"><i class="mk est"></i>Well established</span><div><p>Correcting a true deficiency is standard care.</p><ul class="src" aria-label="Sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/21646368/">Endocrine Society guideline: Evaluation, Treatment, and Prevention of Vitamin D Deficiency, 2011</a></li></ul></div></div>
+      <div class="row"><h3>Raising vitamin D above the normal range</h3><span class="st"><i class="mk mix"></i>Mixed or limited</span><div><p>In a trial of more than 25,000 adults without cancer or heart disease, daily vitamin D did not lower the rate of cancer or major heart events.</p><ul class="src" aria-label="Sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/30415629/">Manson et al., VITAL trial, New England Journal of Medicine, 2019</a></li></ul></div></div>
+      <div class="row"><h3>Inflammation markers such as hs&#8209;CRP</h3><span class="st"><i class="mk mix"></i>Mixed or limited</span><div><p>A 2003 AHA and CDC statement treated hs-CRP as a marker of heart risk, most useful for people at intermediate risk. It did not recommend testing everyone.</p><ul class="src" aria-label="Sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/12551878/">Pearson et al., AHA/CDC scientific statement, Circulation, 2003</a></li></ul></div></div>
+      <div class="row"><h3>Hormone therapy when levels are in the normal range</h3><span class="st"><i class="mk mix"></i>Mixed or limited</span><div><p>For men, the Endocrine Society recommends testosterone therapy only when symptoms and consistently low levels both appear, and advises against routine screening.</p><ul class="src" aria-label="Sources"><li><a href="https://pubmed.ncbi.nlm.nih.gov/29562364/">Bhasin et al., Endocrine Society guideline: Testosterone Therapy in Men With Hypogonadism, 2018</a></li></ul></div></div>
+      <div class="row"><h3>Scoring 70+ markers as one pattern</h3><span class="st"><i class="mk "></i>Emerging or unproven</span><div><p>The Metabolic Code is MIORA’s own framework. We found no independent, peer-reviewed validation of it. Ask MIORA for any published evidence.</p><ul class="src" aria-label="Sources"><li><a href="https://miora.lifetime.life/how-it-works.html">MIORA, How MIORA works (company description)</a></li></ul></div></div>
+    </div>
+    <p class="srcnote">Sources checked November 2026. Guidelines are updated, so ask your provider for the current version. This page is educational and is not medical advice.</p>
+    <div class="ask">
+      <h3>Questions to ask before you book</h3>
+      <ul>
+        <li>What will this cost today, and over a year?</li>
+        <li>Which of these tests will change my care?</li>
+        <li>What does the research say about each treatment you suggest?</li>
+        <li>How will we know if it is working, and when do we stop?</li>
+        <li>Will my primary doctor see my results?</li>
+        <li>Which of these steps can I do without paying for a program?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit" aria-labelledby="v-h">
+  <div class="wrap split flip">
+    <div class="stack">
+      <h2 id="v-h">Start in Evanston, or from home</h2>
+      <p>In person at Life Time Evanston, or virtual anywhere in Illinois. Open to everyone.</p>
+      <dl>
+        <dt>Address</dt><dd>1618 Sherman Ave, Evanston, Illinois 60201</dd>
+        <dt>Hours</dt><dd>Monday to Friday, 8 AM to 5 PM</dd>
+        <dt>Phone</dt><dd><a href="tel:8474489724">847-448-9724</a></dd>
+      </dl>
+      <a class="btn" href="tel:8474489724">Call to book a consultation</a>
+    </div>
+    <!-- Mockup: phone + lake -->
+    <svg class="mock" viewBox="0 0 560 560" role="img" aria-label="Mockup of a phone showing a care plan timeline in front of abstract lake waves.">
+      <g fill="none" stroke="#7FBFAE" stroke-width="1.5" opacity=".7">
+        <path d="M0 400 C90 370 160 430 250 400 S420 370 560 410"/><path d="M0 430 C90 400 160 460 250 430 S420 400 560 440"/>
+        <path d="M0 460 C90 430 160 490 250 460 S420 430 560 470"/><path d="M0 490 C90 460 160 520 250 490 S420 460 560 500"/>
+      </g>
+      <rect x="170" y="30" width="220" height="470" rx="36" fill="#10222F"/>
+      <rect x="180" y="40" width="200" height="450" rx="28" fill="#F8FAF9"/>
+      <text x="200" y="88" font-family="Newsreader,serif" font-size="22" font-weight="300" fill="#10222F">Your plan</text>
+      <text x="200" y="108" font-family="Instrument Sans,sans-serif" font-size="11" fill="#5A6B77">Next lab review in 12 weeks</text>
+      <path d="M200 190 L238 170 L276 182 L314 148 L356 132" fill="none" stroke="#2F7F6E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="356" cy="132" r="6" fill="#E8A53C"/>
+      <line x1="208" y1="262" x2="208" y2="420" stroke="#D2DCDF"/>
+      <g font-family="Instrument Sans,sans-serif" font-size="12" fill="#3F5160">
+        <circle cx="208" cy="262" r="5" fill="#2F7F6E"/><text x="224" y="266">Baseline labs complete</text>
+        <circle cx="208" cy="320" r="5" fill="#2F7F6E"/><text x="224" y="324">Plan review with provider</text>
+        <circle cx="208" cy="378" r="5" fill="none" stroke="#2F7F6E" stroke-width="2"/><text x="224" y="382">Vitamin D recheck</text>
+        <circle cx="208" cy="420" r="5" fill="none" stroke="#5A6B77" stroke-width="2"/><text x="224" y="424">Plan update</text>
+      </g>
+    </svg>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>An independent UX design concept created for a portfolio. It is not affiliated with, endorsed by, or published by Life Time or MIORA. Facility details are taken from the public MIORA Illinois page. Triad names and lessons are illustrative. This site is educational and is not medical advice.</p>
+  </div>
+</footer>
+
+<script>
+const triads=[
+ {n:'Energy and metabolism',d:'How your body makes and spends fuel: glucose, insulin, thyroid signals.'},
+ {n:'Hormones',d:'The messengers that shape mood, sleep, recovery, and drive.'},
+ {n:'Inflammation and immunity',d:'Markers that show how hard your body is working to defend itself.'},
+ {n:'Heart and vessels',d:'Lipids and related markers that describe long-term cardiovascular health.'},
+ {n:'Nutrients and cells',d:'Vitamins, minerals, and blood-cell markers that fuel everything else.'}
+];
+const per=14,gap=Math.PI*2/5,svg=document.getElementById('ring'),NS='http://www.w3.org/2000/svg';
+const list=document.getElementById('triads'),note=document.getElementById('triad-note');
+const dots=[];
+for(let g=0;g<5;g++)for(let k=0;k<per;k++){
+  const a=-Math.PI/2+g*gap+(k+.5)*((gap*.84)/per)+gap*.08;
+  const ring=k%2?150:166, c=document.createElementNS(NS,'circle');
+  c.setAttribute('cx',200+ring*Math.cos(a));c.setAttribute('cy',200+ring*Math.sin(a));
+  c.setAttribute('r',k%3===0?5:3.6);c.setAttribute('class','dot');
+  c.style.setProperty('--i',g*per+k);svg.appendChild(c);dots.push(c);
+}
+const t=(cls,y,txt)=>{const e=document.createElementNS(NS,'text');e.setAttribute('x',200);e.setAttribute('y',y);e.setAttribute('text-anchor','middle');e.setAttribute('class',cls);e.textContent=txt;svg.appendChild(e)};
+t('ring-center',208,'70+');t('ring-sub',232,'biomarkers, five triads');
+function select(g){
+  dots.forEach((d,i)=>{const on=Math.floor(i/per)===g;d.classList.toggle('on',on);d.classList.toggle('flag',on&&i%per===5)});
+  list.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',i===g));
+  note.textContent=triads[g].d+' The amber dot is a marker worth discussing with your provider.';
+}
+triads.forEach((x,g)=>{const li=document.createElement('li'),b=document.createElement('button');
+  b.type='button';b.innerHTML=x.n+'<small>14 markers</small>';b.addEventListener('click',()=>select(g));
+  li.appendChild(b);list.appendChild(li)});
+select(1);
+</script>
+</body>
+</html>

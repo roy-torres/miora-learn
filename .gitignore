@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+.claude/logs/
+.playwright-mcp/
+preview-*.png
+.DS_Store
