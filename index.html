@@ -109,6 +109,8 @@ details p{padding-bottom:var(--s3)}
 .limits li{padding:12px 0 12px 28px;border-top:1px solid var(--line);position:relative;color:var(--ink-2)}
 .limits li::before{content:"";position:absolute;left:0;top:22px;width:10px;height:10px;border-radius:50%;background:var(--glass)}
 .limits .no li::before{background:none;box-shadow:inset 0 0 0 2px var(--amber)}
+.limits.solo{grid-template-columns:1fr}
+figcaption{font-size:14px;color:var(--ink-3);margin-top:var(--s2);text-align:center}
 
 /* evidence */
 .legend{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s4);margin:var(--s4) 0 var(--s2);font-size:15px;color:var(--ink-2)}
@@ -196,6 +198,7 @@ footer p{max-width:80ch;color:var(--ink-3)}
       </ol>
     </div>
     <!-- Mockup: lab report -->
+    <figure>
     <svg class="mock" viewBox="0 0 560 640" role="img" aria-label="Mockup of a lab report showing five biomarkers on range bars, one marker in amber outside the optimal zone.">
       <rect x="40" y="20" width="480" height="600" rx="20" fill="#fff"/>
       <text x="76" y="76" font-family="Newsreader,serif" font-size="28" font-weight="300" fill="#10222F">Your Metabolic Code</text>
@@ -211,6 +214,8 @@ footer p{max-width:80ch;color:var(--ink-3)}
       <text x="96" y="556" font-family="Instrument Sans,sans-serif" font-size="14" font-weight="600" fill="#10222F">Worth a conversation</text>
       <text x="96" y="577" font-family="Instrument Sans,sans-serif" font-size="13" fill="#3F5160">Vitamin D sits below your optimal zone.</text>
     </svg>
+    <figcaption>Sample data, not a real result.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -250,6 +255,11 @@ footer p{max-width:80ch;color:var(--ink-3)}
       <div class="no"><h3>What your provider does</h3>
         <ul><li>Weighs results against how you feel</li><li>Decides on every treatment</li><li>Explains the why, and answers your questions</li></ul></div>
     </div>
+    <p class="srcnote">What the AI does is described in MIORA’s own words. See <a href="#evidence">what the evidence supports</a> for how well each claim has been tested.</p>
+    <div class="limits solo">
+      <div class="no"><h3>When AI gets it wrong</h3>
+        <ul><li>It can miss a real problem, or flag one that is not there</li><li>Your provider checks every flag against how you feel</li><li>You can ask for a second look at any result</li></ul></div>
+    </div>
   </div>
 </section>
 
@@ -280,6 +290,10 @@ footer p{max-width:80ch;color:var(--ink-3)}
         <li>How will we know if it is working, and when do we stop?</li>
         <li>Will my primary doctor see my results?</li>
         <li>Which of these steps can I do without paying for a program?</li>
+        <li>Who can see my results, and how long are they kept?</li>
+        <li>Can I opt out of AI analysis, or have my data deleted?</li>
+        <li>Were the optimal ranges built from people like me (age, sex, background)?</li>
+        <li>Who do I contact if I disagree with a result?</li>
       </ul>
     </div>
   </div>
@@ -298,6 +312,7 @@ footer p{max-width:80ch;color:var(--ink-3)}
       <a class="btn" href="tel:8474489724">Call to book a consultation</a>
     </div>
     <!-- Mockup: phone + lake -->
+    <figure>
     <svg class="mock" viewBox="0 0 560 560" role="img" aria-label="Mockup of a phone showing a care plan timeline in front of abstract lake waves.">
       <g fill="none" stroke="#7FBFAE" stroke-width="1.5" opacity=".7">
         <path d="M0 400 C90 370 160 430 250 400 S420 370 560 410"/><path d="M0 430 C90 400 160 460 250 430 S420 400 560 440"/>
@@ -317,6 +332,8 @@ footer p{max-width:80ch;color:var(--ink-3)}
         <circle cx="208" cy="420" r="5" fill="none" stroke="#5A6B77" stroke-width="2"/><text x="224" y="424">Plan update</text>
       </g>
     </svg>
+    <figcaption>Sample plan, not a real patient.</figcaption>
+    </figure>
   </div>
 </section>
 </main>
