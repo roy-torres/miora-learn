@@ -17,3 +17,7 @@ Both PDFs are in `~/Desktop/` (copies of the UI book also in `~/.openclaw/worksp
 8. At every step, give a high-level explanation of what you changed.
 9. Keep every change simple and minimal. Avoid big rewrites.
 10. At the end, add a review section in `tasks/todo.md` summarizing the changes.
+
+## Security
+11. Before any push that changes code, run `/security-review` and report the findings before pushing.
+12. The Content-Security-Policy in `index.html` pins the inline script by SHA-256 hash. If that script changes, recompute the hash and update the `<meta>` tag.

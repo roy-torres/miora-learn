@@ -175,3 +175,9 @@ Kept as is by choice: Vanessa's name in this file, local paths in `claude.md`.
 - Triad buttons are built with `textContent`; no `innerHTML` remains.
 - Tested at 1280px and 390px: 0 console errors, ring renders 70 dots, triad click works, no horizontal overflow, layout unchanged.
 - Limits: a `<meta>` CSP can't set `frame-ancestors`, so the page can still be framed by another site; GitHub Pages doesn't allow custom headers.
+
+---
+
+# README and security rule
+- [x] Added `README.md` telling the design process for recruiters and UX directors (interview named by role only; no claims beyond what was done and measured).
+- [x] Added rules 11 and 12 to `claude.md`: run `/security-review` before any code push; recompute the CSP script hash when the inline script changes.
