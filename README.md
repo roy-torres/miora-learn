@@ -84,6 +84,10 @@ On mobile, the header's "Book a consultation" sat directly above an identical he
 
 Decision: hide the header buttons on mobile, keep them on desktop where the header is far from the hero. The header isn't sticky, so no always-visible button was lost.
 
+## Another deliberate choice: no photography
+
+The page uses no stock photos. It stays minimal, loads fast, and the one ring graphic and two inline mockups (each labeled "sample data") carry the visual story. A photo of a doctor or a blood draw would compete with them and work against the plain, honest tone.
+
 ## Security notes
 
 - No secrets or personal data in the repo or its git history. No forms, cookies, storage, analytics, or network calls.
