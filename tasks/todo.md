@@ -156,3 +156,22 @@ Source: interview notes. Page stays an independent concept, so interview facts a
 - Laws of UX has no rule on repeated buttons. Closest: Von Restorff (key actions distinct, emphasis shouldn't compete), Hick's Law (fewer choices), Cognitive Load (unnecessary elements).
 - Change: on screens 860px and narrower, both header buttons are hidden (one CSS line). Mobile keeps the hero buttons and the bottom "Call to book a consultation". Desktop header unchanged.
 - The header is not sticky, so no persistent mobile CTA is lost.
+
+---
+
+# Security hardening (from audit)
+
+Kept as is by choice: Vanessa's name in this file, local paths in `claude.md`.
+
+- [x] 1. Self-host Instrument Sans and Newsreader (latin subset, woff2) in `fonts/`, replace the Google Fonts links with local `@font-face`, remove the Google preconnects. Visitor IPs no longer go to Google.
+- [x] 2. Add a `<meta>` Content-Security-Policy that allows only same-origin resources (inline script and styles still need `'unsafe-inline'`).
+- [x] 3. Replace `innerHTML` in the triad buttons with `textContent` plus a created `<small>`.
+- [x] 4. Check desktop and mobile on a local server (fonts load, no console errors, no layout shift), then commit, push, and verify live.
+- Note: the CSP pins the script by SHA-256 hash. If the inline script in `index.html` is edited, recompute the hash and update the `<meta>` tag, or the ring will stop working.
+
+## Review
+- Fonts are self-hosted in `fonts/` (3 WOFF2 files, OFL). No requests go to Google; the only network requests are the two local font files.
+- Added a Content-Security-Policy `<meta>`: `default-src 'none'`, script pinned by SHA-256 hash, same-origin fonts, no network calls, forms, plugins or `<base>`. Tested: an injected script did not run and an outside `fetch` was blocked.
+- Triad buttons are built with `textContent`; no `innerHTML` remains.
+- Tested at 1280px and 390px: 0 console errors, ring renders 70 dots, triad click works, no horizontal overflow, layout unchanged.
+- Limits: a `<meta>` CSP can't set `frame-ancestors`, so the page can still be framed by another site; GitHub Pages doesn't allow custom headers.
