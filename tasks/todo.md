@@ -151,3 +151,8 @@ Source: interview notes. Page stays an independent concept, so interview facts a
 - Function Health is not named; one general contrast line is used instead.
 - Interview-only facts (questionnaire, ~50-page report, one-hour review) are labeled as such on the page.
 - Open items: "Get Started" points to MIORA's Illinois page because MIORA's own buttons there are `#` placeholders; swap in a real onboarding URL when you have one. Ask Vanessa whether a booking page exists, and whether Krupesh Patel can be named publicly.
+
+## Follow-up: duplicate "Book a consultation" on mobile
+- Laws of UX has no rule on repeated buttons. Closest: Von Restorff (key actions distinct, emphasis shouldn't compete), Hick's Law (fewer choices), Cognitive Load (unnecessary elements).
+- Change: on screens 860px and narrower, both header buttons are hidden (one CSS line). Mobile keeps the hero buttons and the bottom "Call to book a consultation". Desktop header unchanged.
+- The header is not sticky, so no persistent mobile CTA is lost.
