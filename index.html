@@ -48,6 +48,13 @@ nav a{text-decoration:none;color:var(--ink-2)}nav a:hover{color:var(--ink)}
 .btn.sm{min-height:48px;padding:0 var(--s3);font-size:15px}
 .btn.ghost{background:none;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .btn.ghost:hover{background:var(--fog)}
+.btn.lg{min-height:56px;padding:0 var(--s4);font-size:17px}
+.btn.glass{background:var(--glass-d)}
+.btn.glass:hover{background:var(--ink)}
+.cta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s1);max-width:280px}
+.cta span{font-size:15px;line-height:1.4;color:var(--ink-2)}
+.textlink{margin-top:var(--s3);font-size:16px}
+header .wrap>div{display:flex;gap:var(--s1)}
 
 /* hero */
 .hero{padding:var(--s6) 0 var(--s12)}
@@ -143,6 +150,7 @@ footer p{max-width:80ch;color:var(--ink-3)}
 @media (max-width:860px){
   .wrap{padding:0 var(--s3)}
   nav{display:none}
+  .hdr-start{display:none}
   .hero .wrap,.split,.split.flip,.limits{grid-template-columns:1fr;gap:var(--s6)}
   .lesson{grid-template-columns:1fr;gap:var(--s1)}
   .lesson span.t{text-align:left}
@@ -163,7 +171,10 @@ footer p{max-width:80ch;color:var(--ink-3)}
       <a href="#evidence">Evidence</a>
       <a href="#visit">Illinois</a>
     </nav>
-    <a class="btn sm" href="#visit">Book a consultation</a>
+    <div>
+      <a class="btn sm glass hdr-start" href="https://miora.lifetime.life/location/illinois.html">Get Started</a>
+      <a class="btn sm" href="tel:8474489724">Book a consultation</a>
+    </div>
   </div>
 </header>
 
@@ -172,11 +183,12 @@ footer p{max-width:80ch;color:var(--ink-3)}
   <div class="wrap">
     <div>
       <h1 id="h1">Your blood already knows. Learn to read it.</h1>
-      <p class="lede">A plain-language guide to your Metabolic Code: 70+ biomarkers, five triads, and the role AI plays in helping your care team see the pattern.</p>
+      <p class="lede">Care that starts before something goes wrong, built around you and not a standard plan. A plain-language guide to your Metabolic Code: 70+ biomarkers, five triads, and the role AI plays.</p>
       <div class="actions">
-        <a class="btn" href="#learn">Start learning</a>
-        <a class="btn ghost" href="#visit">Visit Evanston</a>
+        <div class="cta"><a class="btn lg" href="tel:8474489724">Book a consultation</a><span>New here? Sit down and talk it through.</span></div>
+        <div class="cta"><a class="btn lg glass" href="https://miora.lifetime.life/location/illinois.html">Get Started</a><span>Already purchased MIORA? Begin here.</span></div>
       </div>
+      <p class="textlink"><a href="#learn">Or start with a short lesson</a></p>
     </div>
     <div class="instrument">
       <svg class="ring" id="ring" viewBox="0 0 400 400" role="img" aria-label="Seventy biomarkers arranged in a ring, grouped into five triads. One marker is highlighted in amber."></svg>
@@ -196,6 +208,12 @@ footer p{max-width:80ch;color:var(--ink-3)}
         <li><div><h3>Build your plan</h3><p>Your provider reviews results against your history and goals.</p></div></li>
         <li><div><h3>Ongoing support</h3><p>Labs and plan updates keep pace as your body changes.</p></div></li>
       </ol>
+      <div class="limits solo">
+        <div class="yes"><h3>What your visit includes</h3>
+          <ul><li>An optional health questionnaire, so it is your choice</li><li>A report of about 50 pages, in five sections, each with its own triad</li><li>About an hour with a nurse practitioner, Krupesh Patel, FNP-BC, to go through it with you</li></ul></div>
+      </div>
+      <p>Some services hand you a results report and stop there. Here, the report is where the conversation starts.</p>
+      <p class="srcnote">Visit details come from our conversation with MIORA’s Evanston team. MIORA’s public page does not list them.</p>
     </div>
     <!-- Mockup: lab report -->
     <figure>
@@ -216,6 +234,19 @@ footer p{max-width:80ch;color:var(--ink-3)}
     </svg>
     <figcaption>Sample data, not a real result.</figcaption>
     </figure>
+  </div>
+</section>
+
+<section id="lifestyle" aria-labelledby="life-h">
+  <div class="wrap split">
+    <div class="stack">
+      <h2 id="life-h">Built around your week, not a food pyramid</h2>
+      <p>A MIORA dietitian starts with your life, not a rulebook. Changes are sized to fit your week. Nobody is grading your plate.</p>
+    </div>
+    <div class="limits solo">
+      <div class="yes"><h3>What a dietitian visit sounds like</h3>
+        <ul><li>“Let’s pick two things a week you can change.”</li><li>“Are you the meal planner for your family?”</li><li>Your habits are the starting point, not a mistake to fix</li></ul></div>
+    </div>
   </div>
 </section>
 
@@ -241,6 +272,7 @@ footer p{max-width:80ch;color:var(--ink-3)}
       <details><summary>Metabolic Code</summary><p>MIORA’s analysis of 70+ biomarkers across five triads, read alongside your symptom report.</p></details>
       <details><summary>Triad</summary><p>A group of related markers that are read together, because one number alone rarely explains how you feel.</p></details>
       <details><summary>Optimal range</summary><p>A narrower target than the standard lab range, set around how well you function rather than whether you have a disease.</p></details>
+      <details><summary>“Taking it to the next level”</summary><p>Normal means no disease was flagged. Some providers suggest going further to catch changes early. That is a judgment call, not a requirement, and it is fair to ask whether it feels like an upsell. Ask what would change in your care, and what the research says (see the evidence section).</p></details>
       <details><summary>Care plan</summary><p>The steps you and your provider agree on, based on your results, history, and goals. You can ask what each step is for and how it will be measured.</p></details>
     </div>
   </div>
@@ -294,6 +326,8 @@ footer p{max-width:80ch;color:var(--ink-3)}
         <li>Can I opt out of AI analysis, or have my data deleted?</li>
         <li>Were the optimal ranges built from people like me (age, sex, background)?</li>
         <li>Who do I contact if I disagree with a result?</li>
+        <li>My results are in the normal range. What would change if I did more?</li>
+        <li>What would you suggest if I did nothing extra?</li>
       </ul>
     </div>
   </div>

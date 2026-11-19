@@ -94,3 +94,60 @@ Read-only. Page is a static education page about AI, not an AI product. Copilot,
 - Checked at 1280px and 390px: layouts clean, no horizontal overflow.
 - Not done: guardrails/restating etc. (no AI input on the page). If a chat or search is ever added, define denied requests first (ch. 9).
 - The page makes no claims about MIORA's data practices; it only asks the questions.
+
+---
+
+# Revise UI from Vanessa interview (Wellness Coordinator, MIORA Evanston)
+
+Source: interview notes. Page stays an independent concept, so interview facts are worded as "what members are told," not official MIORA claims. Text-first edits; small CSS only for the CTA change. Needs your OK before work starts.
+
+## What Vanessa said -> what it means for the page
+| Note | Current page | Gap |
+|---|---|---|
+| Members think MIORA is "the food pyramid"; dietitian looks at lifestyle ("pick two things a week", "are you the meal planner for your family?") | `#how` is clinical: blood draw, plan, support | Lifestyle-fit side is missing |
+| Members fear the dietitian will reprimand them | Nothing on tone of visit | Fear isn't addressed |
+| Elective questionnaire, 50-page report, 5 sections, each with its own triad | Hero says "five triads"; no report or questionnaire | Report and questionnaire not shown |
+| "Normal range" people feel up-sold when told to go further | `Normal versus optimal` lesson, Evidence section | Skepticism not named; no "why go further" answer |
+| Proactive, not reactive; not one-size-fits-all | Hero lede is neutral | Core message not stated |
+| Function Health: blood draw at facility, then 1-hour specialist review | No comparison | Differentiator unclear (see question 2) |
+| Two CTAs: "Get Started" (already purchased) and "Book a Consultation" (sit-and-talk). Need more prominence | Header has small "Book a consultation"; hero has "Start learning" and "Visit Evanston"; no "Get Started" | Two audiences, weak CTAs |
+
+## Plan
+- [ ] 1. **CTAs (Vanessa's main ask).** Hero: replace "Start learning" / "Visit Evanston" with a primary "Book a consultation" and a second solid "Get Started" (for people who've already purchased), each with a one-line helper under it saying who it's for. Keep "Start learning" as a text link. Header: keep one 48px "Book a consultation" and add "Get Started". Both 48px+, AA contrast, visibly different from each other.
+- [ ] 2. **Proactive, personal line.** Add one sentence to the hero lede: care that starts before something is wrong and is built around you, not a standard plan.
+- [ ] 3. **Lifestyle section** (new, short, in `#how` or just after): "It's about your life, not a food pyramid." Two example questions in Vanessa's words, plus "Pick two things a week you can change." Tone: no judgment.
+- [ ] 4. **Fear of being reprimanded.** One line under that section: the dietitian's job is to fit changes into your week, not to grade your food choices.
+- [ ] 5. **What you get.** Add to `#how`: a short questionnaire (elective), a roughly 50-page report, five sections each with its own triad. Link the existing triad ring to this.
+- [ ] 6. **"Isn't normal good enough?"** Add a short answer near the "Normal versus optimal" lesson and in the Questions list: why a provider might suggest going further, and how to ask "what would change if I did this?" This stays consistent with the Evidence section's honesty about limits.
+- [ ] 7. **Function Health.** Hold until you answer question 2.
+- [ ] 8. Check contrast (AA), 4px grid, 48px buttons, mobile (390px) and desktop; screenshot; fill in Review; commit and push.
+
+## Questions for you
+1. **"Get Started" destination:** where should it go? Options: a login or onboarding link (give me the URL), `tel:` like the call button, or a placeholder `#` that I flag as unfinished.
+2. **Function Health:** do you want a comparison on the page (naming a competitor on a page that says it's independent), or just a general line like "some services draw blood and hand you a report; MIORA adds a conversation with a specialist"? Also, do the notes mean MIORA does the one-hour specialist review, or that Function Health does? I read it as MIORA's contrast, but I'm unsure.
+3. **"Book a Consultation"** currently calls a phone number. Keep that, or is there a booking page?
+4. **Quotes:** OK to use Vanessa's phrases verbatim as sample prompts (unattributed), or should I reword them?
+
+## Decisions (after your answers)
+- "Get Started" -> https://miora.lifetime.life/location/illinois.html (MIORA's own Get Started and Book buttons there are `#` placeholders; no real purchase URL exists). Flag as stand-in in Review.
+- "Book a consultation" keeps `tel:8474489724`. Ask Vanessa if a booking page exists.
+- Function Health: no competitor named. General line plus the one-hour review with Krupesh Patel, FNP-BC, nurse practitioner (title as on MIORA's public page; interview-only titles not used).
+- One-hour review, questionnaire, 50-page report come from the interview only, not MIORA's site. Word as "your visit includes" and note the source.
+- Vanessa's phrases may be used verbatim, unattributed.
+
+## Progress (edits made in index.html, NOT yet committed or pushed)
+- [x] 1. CTAs: hero now has "Book a consultation" (tel) and "Get Started" (MIORA Illinois page), both 56px with a one-line helper; "Start learning" became a text link. Header has both at 48px; "Get Started" hides on mobile to avoid crowding.
+- [x] 2. Hero lede opens with the proactive, personal line.
+- [x] 3+4. New "Built around your week, not a food pyramid" section with Vanessa's two phrases and a no-grading line.
+- [x] 5+7. "What your visit includes" list in `#how` (optional questionnaire, ~50-page report in five sections, about an hour with Krupesh Patel, FNP-BC), a general line instead of naming Function Health, and a source note that these details come from the interview.
+- [x] 6. Glossary entry "Taking it to the next level" and two new questions about the normal range.
+- [x] 8a. Static checks: white on Get Started 4.79:1, white on Book 16.26:1, helper text 7.83:1, source note 4.66:1 (all AA); tags balanced; spacing uses the 4px scale.
+- [x] 8b. Browser check at 1280px and 390px via a local server you started: no horizontal overflow; hero buttons 56px, header buttons 48px; mobile header shows only Book; new sections render cleanly. Widened CTA helper text (240px -> 280px) to stop one-word wraps.
+- [x] 8c. Commit and push, then Review.
+
+## Review
+- CTAs are now the most prominent thing in the hero: "Book a consultation" (tel, for people who want to talk) and "Get Started" (for people who already purchased), 56px, with helper text. Header has both at 48px.
+- Added the messages from the interview: proactive and personal care, lifestyle-first dietitian visits (Vanessa's two phrases), no-judgment tone, what the visit includes, and an honest answer to the "is this an upsell?" worry.
+- Function Health is not named; one general contrast line is used instead.
+- Interview-only facts (questionnaire, ~50-page report, one-hour review) are labeled as such on the page.
+- Open items: "Get Started" points to MIORA's Illinois page because MIORA's own buttons there are `#` placeholders; swap in a real onboarding URL when you have one. Ask Vanessa whether a booking page exists, and whether Krupesh Patel can be named publicly.
