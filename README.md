@@ -6,6 +6,17 @@ A one-page, plain-language guide that helps a first-time visitor understand MIOR
 
 > **Independent portfolio concept.** Not affiliated with, endorsed by, or published by Life Time or MIORA. Facility details come from MIORA's public Illinois page. Triad names and lessons are illustrative. Not medical advice.
 
+## 30-second summary
+
+- **What:** A single-page guide that explains MIORA's blood-based "Metabolic Code" and how AI is used, for skeptical first-time visitors.
+- **How I worked:** Set design standards first (4px grid, 48px buttons, WCAG AA), measured the page against them, audited it against *UX for AI*, then revised it using an interview with a MIORA Wellness Coordinator.
+- **Biggest decisions:** Honest limits up front (the method is labeled "unproven"); two clearly different calls to action for two kinds of visitors; plain wording to ease the fear of being judged or up-sold.
+- **Measured fixes:** Text contrast 4.12:1 to 5.27:1; header button 40px to 48px; fonts self-hosted and a Content-Security-Policy added.
+- **Limits:** One interview, no usability testing with real visitors. "Get Started" is a stand-in link.
+- **Where to look:** [Process table](#how-i-worked) for the steps, [interview changes](#what-the-interview-changed) for the evidence behind the design, [`tasks/todo.md`](tasks/todo.md) for the full log.
+
+---
+
 This README is the story of how the design came together, in the order the decisions were made. The full working log, with checklists and measurements, is in [`tasks/todo.md`](tasks/todo.md).
 
 ---
